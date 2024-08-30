@@ -67,13 +67,17 @@ weekday_cn = weekdays[today.strftime("%A")]
 
 # 随机情话 API
 def get_words():
-    words = requests.get("https://api.shadiao.pro/chp")
-    if words.status_code != 200:
+    response = requests.get("https://v1.hitokoto.cn/?c=i")
+    if response.status_code != 200:
         return get_words()
-    result = words.json()['data']['text']
+    
+    data = response.json()  # 解析JSON响应
+    quote = data['hitokoto']  # 获取励志语句
+    author = data.get('from_who', '未知')  # 获取出处或作者
+
+    result = f"{quote}说:{author}"
     print(result)
     return result
-
 
 # 随机文字颜色
 def get_random_color():
