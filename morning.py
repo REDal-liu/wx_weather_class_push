@@ -75,7 +75,7 @@ def get_words():
     quote = data['hitokoto']  # 获取励志语句
     author = data.get('from_who', '未知')  # 获取出处或作者
 
-    result = f"{quote}说:{author}"
+    result = f"{quote} —— {author}"
     print(result)
     return result
 
