@@ -51,6 +51,20 @@ user_id_list = [
 # 以下为主代码，不需要修改           #
 ##################################
 
+# 星期几的中英文映射
+weekdays = {
+    "Monday": "星期一",
+    "Tuesday": "星期二",
+    "Wednesday": "星期三",
+    "Thursday": "星期四",
+    "Friday": "星期五",
+    "Saturday": "星期六",
+    "Sunday": "星期日"
+}
+
+# 英文星期几转中文
+weekday_cn = weekdays[today.strftime("%A")]
+
 # 随机情话 API
 def get_words():
     words = requests.get("https://api.shadiao.pro/chp")
@@ -111,7 +125,7 @@ def wx_push():
         # 获取今天日期
         # Date=today.strftime("%Y-%m-%d")
         data = {
-            "Time": {"value": today.strftime("%m-%d %A"), "color": get_random_color()},
+            "Time": {"value": today.strftime("%m-%d") + " " + weekday_cn, "color": get_random_color()},
             "name": {"value": name, "color": get_random_color()},
             "weather": {"value": wea, "color": get_random_color()},
             "temperature": {"value": temperature + "℃", "color": get_random_color()},
